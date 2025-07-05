@@ -11,7 +11,7 @@ public class App {
 
     public static int ch;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         fileIo file1 = new fileIo();
         questionBank questionbank1 = new questionBank();
         UIManager uiManager = new UIManager();
@@ -57,7 +57,7 @@ public class App {
                     break;
                 }
                 case 6: {
-                    file1.writeFile();
+                    questionbank1.writeFileAccess();
                     System.out.println("Your Data is Successfully saved");
                     break;
                 }

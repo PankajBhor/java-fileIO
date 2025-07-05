@@ -1,16 +1,18 @@
 package com.tap.tfl.Repository;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 import com.tap.tfl.Entity.question;
+import com.tap.tfl.store.fileIo;
 import com.tap.tfl.ui.UIManager;
 
 public class questionBank {
 
     Scanner scanner = new Scanner(System.in);
-    List<question> questionList = new ArrayList<>();
+    public List<question> questionList = new ArrayList<>();
     UIManager manager = new UIManager();
 
     public void insertQuestion(question question1) {
@@ -48,9 +50,16 @@ public class questionBank {
     }
 
     public void removeQuestion(int questionId) {
-        for (question q : questionList) {
+        // for (question q : questionList) {
+        //     if (q.getQuestionId() == questionId) {
+        //         questionList.remove(q);
+        //     }
+        // }
+        Iterator<question> itr = questionList.iterator();
+        while (itr.hasNext()) { 
+            question q = itr.next();
             if (q.getQuestionId() == questionId) {
-                questionList.remove(q);
+                itr.remove();
             }
         }
     }
@@ -58,7 +67,6 @@ public class questionBank {
     public void displayById(int questionId) {
         for (question q : questionList) {
             if (q.getQuestionId() == questionId) {
-                UIManager manager = new UIManager();
                 manager.getData(q);
             }
         }
@@ -66,9 +74,20 @@ public class questionBank {
 
     public void display() {
         for (question q : questionList) {
-            UIManager manager = new UIManager();
             manager.getData(q);
             // System.out.println("Id : " + q.getQuestionId() + " Subject : " + q.getSubject() + " Title : " + q.getTitle() + " Option  A : " + q.getOptionA() + " Option  B : " + q.getOptionB() + " Option  C : " + q.getOptionC() + " Option  D : " + q.getOptionD() + " Correct Answer : " + q.getCorrectAnswer() + " Evaluation Criteria : " + q.getEvaluationCriteria());
+        }
+    }
+
+    public void readFileAccess() {
+        
+    }
+
+    public void writeFileAccess() {
+        Iterator<question> itrq = questionList.iterator();
+        fileIo fwrite = new fileIo();
+        while (itrq.hasNext()) { 
+            fwrite.writeFile(itrq.next());
         }
     }
 }

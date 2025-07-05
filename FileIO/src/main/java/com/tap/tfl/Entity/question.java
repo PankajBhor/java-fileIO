@@ -1,6 +1,8 @@
 package com.tap.tfl.Entity;
 
-public class question {
+import java.io.Serializable;
+
+public class question implements Serializable {
 
     private int questionId;
     private String subject;
