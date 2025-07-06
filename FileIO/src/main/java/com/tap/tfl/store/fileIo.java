@@ -11,11 +11,12 @@ import com.tap.tfl.Repository.questionBank;
 import com.tap.tfl.ui.UIManager;
 
 public class fileIo {
-    
+
     UIManager ui = new UIManager();
+
     public void writeFile(question q) {
         try {
-            FileOutputStream fout = new FileOutputStream("D:\\TFLAssessment\\Solution\\Java\\PankajB\\FileIO\\src\\main\\java\\com\\tap\\tfl\\store\\fileinput.txt");
+            FileOutputStream fout = new FileOutputStream("D:\\java-fileIO\\FileIO\\src\\main\\java\\com\\tap\\tfl\\store\\fileinput.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             ui.getData(q);
             oos.writeObject(q);
@@ -30,14 +31,14 @@ public class fileIo {
         question q = new question();
         try {
             questionBank writeqb = new questionBank();
-            FileInputStream fin = new FileInputStream("D:\\TFLAssessment\\Solution\\Java\\PankajB\\FileIO\\src\\main\\java\\com\\tap\\tfl\\store\\fileinput.txt");
+            FileInputStream fin = new FileInputStream("D:\\java-fileIO\\FileIO\\src\\main\\java\\com\\tap\\tfl\\store\\fileinput.txt");
             ObjectInputStream ois = new ObjectInputStream(fin);
             int flag = 0;
             //while (ois.readObject() != null) {
             do {
                 q = (question) ois.readObject();
                 if (q == null) {
-                    flag = 1;    
+                    flag = 1;
                 }
                 writeqb.writeIntoList(q);
             } while (flag == 0); //while(q != null) tried
